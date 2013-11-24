@@ -1,0 +1,21 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MVVMAccount" x:Class="MVVMAccount.MainWindow"
+        Title="{Binding Path=ShortName, StringFormat=ShortName: {0}}" Height="350" Width="525">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="320" VerticalAlignment="Top" Width="517">
+            <TabItem Header="Account">
+                <Grid Background="#FFE5E5E5">
+                    <local:AccountPropertiesUserControl DataContext="{Binding AccountPropertiesViewModel}"></local:AccountPropertiesUserControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Allocations">
+                <Grid Background="#FFE5E5E5">
+                    <local:AccountAllocationsUserControl DataContext="AccountPropertiesViewModel"></local:AccountAllocationsUserControl>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
