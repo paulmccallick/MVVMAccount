@@ -16,7 +16,8 @@ namespace MVVMAccount
     {
         private void Application_Startup(object sender, StartupEventArgs eventArgs)
         {
-            var account = new Account {ShortName = "fredMarius"};
+            //TODO:this viewmodel needs to be shared with the rest of them
+            var account = new Account();
             var vm = new MainWindowViewModel(account);
             var window = new MainWindow(vm);
             window.Show();

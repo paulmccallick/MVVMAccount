@@ -7,7 +7,20 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="21" Margin="57,64,0,0" TextWrapping="Wrap" Text="{Binding ShortName,Mode=Default}" VerticalAlignment="Top" Width="112"/>
+        <TextBox HorizontalAlignment="Left" Height="21" Margin="57,64,0,0" TextWrapping="Wrap" 
+                 Text="{Binding Path=ShortName, ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=Default}" VerticalAlignment="Top" Width="112">
+            <TextBox.Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip"
+                Value="{Binding RelativeSource={RelativeSource Self}, 
+                       Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            </TextBox.Style>
+        </TextBox>
         <ComboBox HorizontalAlignment="Left" Margin="57,129,0,0" VerticalAlignment="Top" Width="120"
                   ItemsSource="{Binding ProductTypes, Mode=Default}" 
                 DisplayMemberPath="DisplayValue" 

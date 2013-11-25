@@ -11,8 +11,23 @@
                 ItemsSource="{Binding Benchmarks, Mode=Default}" 
                 DisplayMemberPath="DisplayValue" 
                 SelectedValuePath="ItemValue" 
-                SelectedValue="{Binding Benchmark}"
-                HorizontalAlignment="Left" Height="20" Margin="54,81,0,0" VerticalAlignment="Top" Width="139"/>
+                SelectedValue="{Binding Path=Benchmark,NotifyOnValidationError=true,ValidatesOnDataErrors=true}"
+               
+                
+                
+                HorizontalAlignment="Left" Height="20" Margin="54,81,0,0" VerticalAlignment="Top" Width="139">
+            <ComboBox.Style>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Style.Triggers>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="ToolTip"
+                Value="{Binding RelativeSource={RelativeSource Self}, 
+                       Path=(Validation.Errors)[0].ErrorContent}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
 
     </Grid>
 </UserControl>

@@ -10,13 +10,7 @@ using MVVMAccount.Annotations;
 
 namespace MVVMAccount
 {
-    public class ComboBoxItem<T>
-    {
-        public string DisplayValue { get; set; }
-        public T ItemValue { get; set; }
-    }
-
-    public class AccountPropertiesViewModel:INotifyPropertyChanged
+    public class AccountPropertiesViewModel:INotifyPropertyChanged,IDataErrorInfo
     {
         private string _shortName;
         private ProductType _productType;
@@ -78,5 +72,13 @@ namespace MVVMAccount
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public string this[string columnName]
+        {
+            get { return _accountManagement.GetErrorText("ShortName"); }
+
+        }
+
+        public string Error { get; private set; }
     }
 }

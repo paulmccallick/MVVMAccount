@@ -10,7 +10,7 @@ using AccountDomain.Annotations;
 
 namespace MVVMAccount
 {
-    public class AccountAllocationsViewModel : INotifyPropertyChanged
+    public class AccountAllocationsViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly AccountManagementService _accountManagement;
         private Benchmark _benchmark;
@@ -20,6 +20,15 @@ namespace MVVMAccount
         {
             _accountManagement = accountManagementService;
             _accountManagement.Account.PropertyChanged += (o, e) => SyncToAccount();
+            _accountManagement.ValidationChanged += (o, e) => HandleValidation(e.PropertyName);
+        }
+
+        private void HandleValidation(string propertyName)
+        {
+            if (propertyName == "Benchmark")
+            {
+                if (PropertyChanged != null) PropertyChanged(this,new PropertyChangedEventArgs("Benchmark"));
+            }
         }
 
         public Benchmark Benchmark
@@ -55,5 +64,12 @@ namespace MVVMAccount
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public string this[string columnName]
+        {
+            get { return _accountManagement.GetErrorText(columnName); }
+        }
+
+        public string Error { get; private set; }
     }
 }
