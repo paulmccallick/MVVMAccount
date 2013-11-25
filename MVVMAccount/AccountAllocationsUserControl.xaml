@@ -6,8 +6,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label Content="Allocations" HorizontalAlignment="Left" Height="54" Margin="54,27,0,0" VerticalAlignment="Top" Width="151"/>
-        <ComboBox x:Name="Benchmark" HorizontalAlignment="Left" Height="20" Margin="54,81,0,0" VerticalAlignment="Top" Width="139"/>
+        <Label Content="Benchmark" HorizontalAlignment="Left" Height="54" Margin="54,27,0,0" VerticalAlignment="Top" Width="151"/>
+        <ComboBox x:Name="Benchmark" 
+                ItemsSource="{Binding Benchmarks, Mode=Default}" 
+                DisplayMemberPath="DisplayValue" 
+                SelectedValuePath="ItemValue" 
+                SelectedValue="{Binding Benchmark}"
+                HorizontalAlignment="Left" Height="20" Margin="54,81,0,0" VerticalAlignment="Top" Width="139"/>
 
     </Grid>
 </UserControl>

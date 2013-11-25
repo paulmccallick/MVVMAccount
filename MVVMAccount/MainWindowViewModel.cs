@@ -16,14 +16,16 @@ namespace MVVMAccount
         private string _shortName;
         private readonly IAccount _account;
         public AccountPropertiesViewModel AccountPropertiesViewModel { get; set; }
+        public AccountAllocationsViewModel AccountAllocationsViewModel { get; set; }
 
         public MainWindowViewModel(IAccount account)
         {
             _account = account;
+            var accountManagementService = new AccountManagementService(account);
             SyncToAccount();
             _account.PropertyChanged += (o, e) => SyncToAccount();
-            AccountPropertiesViewModel = new AccountPropertiesViewModel(_account);
-            AccountPropertiesViewModel.ShortName = "hi there";
+            AccountPropertiesViewModel = new AccountPropertiesViewModel(accountManagementService);
+            AccountAllocationsViewModel = new AccountAllocationsViewModel(accountManagementService);
         }
         public event PropertyChangedEventHandler PropertyChanged;
 

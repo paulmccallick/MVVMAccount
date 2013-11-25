@@ -5,9 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="21" Margin="57,64,0,0" TextWrapping="Wrap" Text="{Binding ShortName,Mode=Default}" VerticalAlignment="Top" Width="112"/>
+        <ComboBox HorizontalAlignment="Left" Margin="57,129,0,0" VerticalAlignment="Top" Width="120"
+                  ItemsSource="{Binding ProductTypes, Mode=Default}" 
+                DisplayMemberPath="DisplayValue" 
+            SelectedValuePath="ItemValue" 
+            SelectedValue="{Binding ProductType}"
+                  />
+        <Label Content="Short Name" HorizontalAlignment="Left" Height="25" Margin="57,34,0,0" VerticalAlignment="Top" Width="112"/>
+        <Label Content="Product Type" HorizontalAlignment="Left" Height="34" Margin="57,95,0,0" VerticalAlignment="Top" Width="112" RenderTransformOrigin="0.5,1.583"/>
 
     </Grid>
 </UserControl>

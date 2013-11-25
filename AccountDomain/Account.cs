@@ -19,6 +19,9 @@ namespace AccountDomain
     public class Account: IAccount
     {
         private string _shortName;
+        private ProductType _productType;
+        private Benchmark _benchmark;
+
         public string ShortName
         {
             get { return _shortName; }
@@ -30,8 +33,28 @@ namespace AccountDomain
             }
         }
 
-        public Benchmark Benchmark { get; set; }
-        public ProductType ProductType { get; set; }
+        public Benchmark Benchmark
+        {
+            get { return _benchmark; }
+            set
+            {
+                if (Equals(value, _benchmark)) return;
+                _benchmark = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ProductType ProductType
+        {
+            get { return _productType; }
+            set
+            {
+                if (value == _productType) return;
+                _productType = value;
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

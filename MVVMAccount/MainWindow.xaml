@@ -12,7 +12,7 @@
             </TabItem>
             <TabItem Header="Allocations">
                 <Grid Background="#FFE5E5E5">
-                    <local:AccountAllocationsUserControl DataContext="AccountPropertiesViewModel"></local:AccountAllocationsUserControl>
+                    <local:AccountAllocationsUserControl DataContext="{Binding AccountAllocationsViewModel}"></local:AccountAllocationsUserControl>
                 </Grid>
             </TabItem>
         </TabControl>

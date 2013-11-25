@@ -68,6 +68,7 @@
     <Compile Include="AccountAllocationsUserControl.xaml.cs">
       <DependentUpon>AccountAllocationsUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AccountAllocationsViewModel.cs" />
     <Compile Include="AccountPropertiesUserControl.xaml.cs">
       <DependentUpon>AccountPropertiesUserControl.xaml</DependentUpon>
     </Compile>
